@@ -10,6 +10,16 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* The hero and About Us sections are scroll-scrubbed by dragging/swiping
+     over full-bleed text and images — that gesture is easy to mistake for a
+     text-selection drag, which leaves a stray highlight overlay sitting on
+     top of the animation until it's dismissed. No text on this site needs
+     to be selectable, so disabling it outright removes the whole class of
+     glitch instead of chasing it element by element. */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 ::-webkit-scrollbar { width: 3px; }
