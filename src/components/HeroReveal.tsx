@@ -25,7 +25,7 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   {
-    src: withBasePath("/products/bottle-500ml-front.jpg"),
+    src: withBasePath("/products/bottle-500ml-front.png"),
     wordmark: "STANDARD",
     step: "Alpine Origin · The Standard Bottle",
     titleMain: "Elegancìa",
@@ -37,7 +37,7 @@ const PRODUCTS: Product[] = [
     heightVh: 58,
   },
   {
-    src: withBasePath("/products/bottle-500ml-detail.jpg"),
+    src: withBasePath("/products/bottle-500ml-detail.png"),
     wordmark: "INDIVIDUAL",
     step: "Alpine Origin · The Individual Bottle",
     titleMain: "Elegancìa",
@@ -49,7 +49,7 @@ const PRODUCTS: Product[] = [
     heightVh: 58,
   },
   {
-    src: withBasePath("/products/bottle-19l.jpg"),
+    src: withBasePath("/products/bottle-19l.png"),
     wordmark: "DISPENSER",
     step: "The 5-Gallon Dispenser",
     titleMain: "The Grand",
