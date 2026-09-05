@@ -1,26 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #f0f8ff;
+  color: #0a1628;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #f0f8ff; }
+::-webkit-scrollbar-thumb { background: #4a9eca; border-radius: 2px; }
+
+@keyframes snow-drift {
+  0%   { transform: translateY(-20px) translateX(0); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 0.55; }
+  100% { transform: translateY(105vh) translateX(28px); opacity: 0; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes loading-sweep {
+  0%   { transform: translateX(-140px); }
+  100% { transform: translateX(280px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+@keyframes scrollDot {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(12px); opacity: 0; }
+  61%  { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bottleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes taglineReveal {
+  0%   { opacity: 0; transform: translateX(16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes statLineReveal {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Stick-slip motion — a real drop on glass holds from surface tension, then
+   slips, then holds again; a constant-speed fall is what reads as fake. */
+@keyframes dropletSlide {
+  0%   { transform: translateY(0); opacity: 0.9; }
+  8%   { transform: translateY(1px); }
+  22%  { transform: translateY(1px); }
+  34%  { transform: translateY(34px); }
+  38%  { transform: translateY(34px); }
+  55%  { transform: translateY(78px); opacity: 0.9; }
+  62%  { opacity: 0; }
+  63%  { transform: translateY(-6px); opacity: 0; }
+  64%  { transform: translateY(0); opacity: 0; }
+  74%  { opacity: 0.9; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+
+/* Hero: the bottle sits right-of-center on the stage; the caption and
+   tagline live either side of it so neither ever sits on top of the
+   product. Below ~1080px there isn't room for all three side by side, so
+   the shared wrapper switches to a plain stacked column instead — that way
+   the two text blocks never have to guess each other's height to avoid
+   overlapping the way two independently-guessed absolute positions would. */
+.hero-caption {
+  position: absolute;
+  top: 50%;
+  left: clamp(24px, 6vw, 64px);
+  transform: translateY(-50%);
+  width: clamp(360px, 36vw, 480px);
+  text-align: left;
+}
+
+.hero-tagline {
+  position: absolute;
+  top: 50%;
+  right: clamp(24px, 6vw, 64px);
+  transform: translateY(-50%);
+  width: clamp(220px, 20vw, 300px);
+  text-align: right;
+}
+
+.hero-mobile-brand {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  /* The bottle and the text block were both sized/positioned for a
+     side-by-side desktop layout. Stacked on one screen, the numbers
+     actually collide: a 70vh floor with a near-full-size bottle leaves the
+     text block (title + 3 stats, anchored to the bottom) nowhere to go but
+     on top of it. Fixing this for real means giving the bottle a smaller,
+     higher-up band and trimming the text block to what still fits below it
+     — not just nudging numbers. */
+  .hero-sticky {
+    /* !important because this same element also sets --stage-x/--floor-vh
+       inline via JS (for the desktop custom-property scheme) — an inline
+       style always beats a stylesheet rule regardless of media query, so
+       without !important this override silently never applied and mobile
+       kept rendering with the desktop 58%/84vh values. */
+    --stage-x: 50% !important;
+    --floor-vh: 56vh !important;
+    --bottle-scale: 0.52 !important;
+  }
+
+  .hero-mobile-brand {
+    display: block;
+  }
+
+  /* Pushed down to clear the mobile brand mark above it. */
+  .hero-top-chrome {
+    top: 9vh !important;
+  }
+
+  .hero-text-stack {
+    position: absolute;
+    bottom: 4vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 26px 24px;
+    margin: 0 22px;
+    /* A soft white scrim so the text stays readable regardless of what's
+       behind it, without turning into a flat opaque card. */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(10, 22, 40, 0.1);
+  }
+
+  .hero-caption {
+    position: static;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: auto;
+    max-width: 400px;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Description and tagline are the least essential copy — dropping them is
+     what actually makes room, rather than shrinking everything a little and
+     still overlapping. */
+  .hero-desc,
+  .hero-tagline {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(1.6rem, 6.5vw, 2.1rem) !important;
+    margin-bottom: 10px !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-stats-list {
+    gap: 8px !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* CEO message: photo beside the quote on desktop, stacked (photo on top,
+   centered) on mobile — a fixed 280px photo column has no room to shrink
+   into on a narrow screen. */
+@media (max-width: 760px) {
+  .ceo-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    text-align: center;
+  }
 }
+
+/* Footer's first column is deliberately wider (2fr) on desktop for the
+   brand blurb — that ratio doesn't collapse cleanly through auto-fit, so it
+   gets an explicit stacked override instead. */
+@media (max-width: 720px) {
+  .footer-columns {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* The "About Us" frame-sequence section is dropped entirely on mobile —
+   not just the bottle animation (already skipped, see HeroScroll.tsx) but
+   the whole section, text included. display:none removes its 400vh
+   scroll-track from layout too, so nothing is reserved for it. */
+@media (max-width: 1080px) {
+  #about {
+    display: none !important;
+  }
+}
+
+/* The hero caption is vertically centered with top:50% / translateY(-50%) —
+   that centers correctly at any height, but the text sizes below were tuned
+   against a normal full-height window. They only respond to *width*
+   (vw-based clamps), so a wide-but-short window (a non-maximized browser, a
+   laptop with a lot of chrome/toolbars eating vertical space) keeps the text
+   at full size and the centered block overflows off the top and bottom of
+   the visible viewport — which reads as "the text is missing" when it's
+   actually just centered outside the visible area. These shrink the whole
+   block on shorter viewports so it always fits. */
+@media (max-height: 820px) {
+  .hero-eyebrow { margin-bottom: 10px !important; }
+  .hero-title { font-size: clamp(1.9rem, 4vw, 2.6rem) !important; margin-bottom: 14px !important; }
+  .hero-desc { font-size: 0.92rem !important; line-height: 1.5 !important; margin-bottom: 16px !important; }
+  .hero-stats-list { gap: 6px !important; }
+  .hero-tagline-text { font-size: clamp(1.05rem, 1.8vw, 1.35rem) !important; }
+}
+
+@media (max-height: 620px) {
+  .hero-eyebrow { display: none !important; }
+  .hero-title { font-size: clamp(1.5rem, 3.4vw, 2rem) !important; margin-bottom: 8px !important; }
+  .hero-desc { display: none !important; }
+}
+
