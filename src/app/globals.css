@@ -150,6 +150,13 @@ body {
     display: block;
   }
 
+  /* Its font-size clamp bottoms out at 4rem — too wide to fit a phone
+     viewport without clipping badly at both edges. The mobile brand mark
+     above covers the same branding job at a size that actually fits. */
+  .hero-wordmark {
+    display: none;
+  }
+
   /* Pushed down to clear the mobile brand mark above it. */
   .hero-top-chrome {
     top: 9vh !important;
@@ -229,6 +236,22 @@ body {
   .footer-columns {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+    text-align: center;
+  }
+
+  .footer-blurb {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .footer-socials {
+    justify-content: center !important;
+  }
+
+  .footer-bottom {
+    justify-content: center !important;
+    flex-direction: column;
+    text-align: center;
   }
 }
 

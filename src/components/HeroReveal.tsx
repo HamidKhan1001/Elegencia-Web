@@ -25,7 +25,7 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   {
-    src: withBasePath("/products/bottle-500ml-front.png"),
+    src: withBasePath("/products/bottle-500ml-front.jpg"),
     wordmark: "STANDARD",
     step: "Alpine Origin · The Standard Bottle",
     titleMain: "Elegancìa",
@@ -37,7 +37,7 @@ const PRODUCTS: Product[] = [
     heightVh: 58,
   },
   {
-    src: withBasePath("/products/bottle-500ml-detail.png"),
+    src: withBasePath("/products/bottle-500ml-detail.jpg"),
     wordmark: "INDIVIDUAL",
     step: "Alpine Origin · The Individual Bottle",
     titleMain: "Elegancìa",
@@ -49,7 +49,7 @@ const PRODUCTS: Product[] = [
     heightVh: 58,
   },
   {
-    src: withBasePath("/products/bottle-19l.png"),
+    src: withBasePath("/products/bottle-19l.jpg"),
     wordmark: "DISPENSER",
     step: "The 5-Gallon Dispenser",
     titleMain: "The Grand",
@@ -244,9 +244,15 @@ export default function HeroReveal() {
           } as React.CSSProperties
         }
       >
-        {/* ── Giant background typography — blurred for depth, drifts opposite the cursor ── */}
+        {/* ── Giant background typography — blurred for depth, drifts opposite
+            the cursor. Desktop only (see .hero-wordmark media query): its
+            font-size clamp bottoms out at 4rem, which a 10-letter word like
+            "INDIVIDUAL" can't fit inside a phone-width viewport without
+            clipping badly at both edges — the mobile brand mark above
+            exists specifically to cover the same branding purpose there. ── */}
         <div
           ref={wordmarkRef}
+          className="hero-wordmark"
           aria-hidden
           style={{
             position: "absolute",
