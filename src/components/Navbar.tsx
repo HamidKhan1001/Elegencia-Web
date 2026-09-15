@@ -2,11 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { withBasePath } from "@/lib/basePath";
+import { getCutout } from "./hero/cutoutCache";
+
+const LOGO_SRC = withBasePath("/logo.png");
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [overHero, setOverHero] = useState(true);
+  // Background-removed once (and cached — LoadingScreen requests the same
+  // src, so this resolves instantly there) so the logo's white card doesn't
+  // show as a box against the navbar's translucent background.
+  const [logoSrc, setLogoSrc] = useState(LOGO_SRC);
+
+  useEffect(() => {
+    let cancelled = false;
+    getCutout(LOGO_SRC).then((c) => {
+      if (!cancelled) setLogoSrc(c.url);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     const fn = () => {
@@ -40,7 +55,7 @@ export default function Navbar() {
 
         <a href="#" style={{ display: "flex", alignItems: "center", gap: "10px", fontFamily: "'Cinzel',serif", fontSize: "1.2rem", fontWeight: 700, letterSpacing: "0.18em", color: "#0a1628", textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={withBasePath("/logo.png")} alt="Elegancià" style={{ height: "30px", width: "auto" }} />
+          <img src={logoSrc} alt="Elegancià" style={{ height: "30px", width: "auto" }} />
           ELEGANCIÀ
         </a>
 
