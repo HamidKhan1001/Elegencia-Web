@@ -12,10 +12,15 @@ export default function Navbar() {
     const fn = () => {
       setScrolled(window.scrollY > 40);
       const hero = document.getElementById("hero-reveal");
-      // The hero is a tall sticky-pinned track — it's still covering the
-      // screen for as long as its bottom edge hasn't scrolled past the
-      // viewport, however far down that track actually is.
-      setOverHero(hero ? hero.getBoundingClientRect().bottom > window.innerHeight : false);
+      // The hero is a single 100vh section that scroll-jacks wheel/touch
+      // input — real page scroll never moves it at all until every product
+      // has been stepped through, so its top sits pinned at ~0 the whole
+      // time. Comparing bottom against window.innerHeight instead (as if it
+      // were still the old tall scroll track) is a hair's-width comparison
+      // between two independently-rounded numbers, and on mobile the
+      // dynamic address bar is enough to tip it the wrong way immediately —
+      // showing the navbar on top of the hero's own mobile brand mark.
+      setOverHero(hero ? hero.getBoundingClientRect().top > -1 : false);
     };
     fn();
     window.addEventListener("scroll", fn, { passive: true });
