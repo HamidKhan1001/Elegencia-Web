@@ -103,16 +103,19 @@ const SNOWFLAKES: Snowflake[] = [
   { id: 6, left: 91, delay: 20, duration: 27, size: 2, opacity: 0.24 },
 ];
 
+// One wheel notch or one swipe = one bottle change, in either direction.
+// This must comfortably outlast IMAGE_DURATION so a second step never cuts
+// into a transition still in flight — that overlap is what reads as janky
+// rather than a real "one scroll = one slide" feel.
+const STEP_COOLDOWN_MS = 950;
+
 export default function HeroReveal() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressFillRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLDivElement>(null);
   const bottleBoxRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(0);
   const busyRef = useRef(false);
-  const evaluateRef = useRef<() => void>(() => {});
   const parallaxRafRef = useRef<number | null>(null);
-  const scrollRafRef = useRef<number | null>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [cutouts, setCutouts] = useState<Record<string, Cutout>>({});
@@ -156,40 +159,89 @@ export default function HeroReveal() {
     };
   }, []);
 
+  // Scroll-jacking: the hero is a single 100vh section, not a long scroll
+  // track. While it fills the viewport, one wheel notch or swipe steps
+  // exactly one product (in whichever direction) instead of scrubbing
+  // continuously — preventDefault keeps the page pinned on the hero for
+  // that one step, and a cooldown matching the transition length is what
+  // makes it read as one deliberate slide-change rather than a scroll blur.
+  // At either end (first product scrolling up, last scrolling down) nothing
+  // is intercepted, so the gesture falls through to ordinary page scroll —
+  // out the top, or on into the sections below.
   useEffect(() => {
-    // The progress bar is updated directly on the DOM (not via React state) —
-    // it changes on every scroll pixel, and routing that through setState
-    // would re-render this entire tree dozens of times a second.
-    const evaluate = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const trackH = containerRef.current.offsetHeight - window.innerHeight;
-      const p = Math.max(0, Math.min(1, -rect.top / trackH));
-      if (progressFillRef.current) progressFillRef.current.style.width = `${p * 100}%`;
-      if (busyRef.current) return;
-      // Step exactly one product at a time — a fast scroll chains straight
-      // through 1 → 2 → 3 (each step re-triggers this once its own
-      // transition completes) rather than skipping the middle one.
-      const rawTarget = Math.min(PRODUCTS.length - 1, Math.floor(p * PRODUCTS.length));
-      if (rawTarget !== activeIndexRef.current) {
-        busyRef.current = true;
-        activeIndexRef.current += rawTarget > activeIndexRef.current ? 1 : -1;
-        setActiveIndex(activeIndexRef.current);
+    const isHeroFilling = () => {
+      const el = containerRef.current;
+      if (!el) return false;
+      // Only ever true while nothing has scrolled the section away — once a
+      // step is let through to native scroll, this naturally stops matching.
+      return Math.abs(el.getBoundingClientRect().top) < 2;
+    };
+
+    const step = (goingDown: boolean) => {
+      busyRef.current = true;
+      activeIndexRef.current += goingDown ? 1 : -1;
+      setActiveIndex(activeIndexRef.current);
+      window.setTimeout(() => {
+        busyRef.current = false;
+      }, STEP_COOLDOWN_MS);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (!isHeroFilling()) return;
+      // Checked before the boundary test on purpose: a single fast swipe
+      // fires many wheel events, and the index can already have crossed
+      // into "last" partway through that burst. Deciding "let it scroll
+      // away" from the post-step index would leak a few of those trailing
+      // events through as real page scroll while the last slide's own
+      // transition is still animating in.
+      if (busyRef.current) {
+        e.preventDefault();
+        return;
       }
+      const goingDown = e.deltaY > 0;
+      const atLast = activeIndexRef.current >= PRODUCTS.length - 1;
+      const atFirst = activeIndexRef.current <= 0;
+      if ((goingDown && atLast) || (!goingDown && atFirst)) return;
+
+      e.preventDefault();
+      step(goingDown);
     };
-    const onScroll = () => {
-      if (scrollRafRef.current) return;
-      scrollRafRef.current = requestAnimationFrame(() => {
-        scrollRafRef.current = null;
-        evaluate();
-      });
+
+    let touchStartY = 0;
+    const SWIPE_PX = 30;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
     };
-    evaluateRef.current = evaluate;
-    window.addEventListener("scroll", onScroll, { passive: true });
-    evaluate();
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isHeroFilling()) return;
+      // Same ordering reason as the wheel handler: hold the page still for
+      // the whole cooldown before re-checking which way is left to go.
+      if (busyRef.current) {
+        e.preventDefault();
+        return;
+      }
+      const currentY = e.touches[0].clientY;
+      const dy = touchStartY - currentY; // positive: finger moving up = scrolling down
+      const goingDown = dy > 0;
+      const atLast = activeIndexRef.current >= PRODUCTS.length - 1;
+      const atFirst = activeIndexRef.current <= 0;
+      if ((goingDown && atLast) || (!goingDown && atFirst)) return;
+
+      e.preventDefault();
+      if (Math.abs(dy) < SWIPE_PX) return;
+      touchStartY = currentY;
+      step(goingDown);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (scrollRafRef.current) cancelAnimationFrame(scrollRafRef.current);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
     };
   }, []);
 
@@ -224,26 +276,26 @@ export default function HeroReveal() {
   };
 
   return (
-    <div id="hero-reveal" ref={containerRef} style={{ height: "360vh", position: "relative" }}>
-      <div
-        className="hero-sticky"
-        style={
-          {
-            position: "sticky",
-            top: 0,
-            height: "100vh",
-            width: "100%",
-            overflow: "hidden",
-            background: `linear-gradient(160deg, ${BG[0]}, ${BG[1]})`,
-            zIndex: 1,
-            // Custom properties so the mobile breakpoint can re-center the
-            // bottle with a plain CSS override, instead of juggling
-            // `!important` on half a dozen individual elements.
-            "--stage-x": `${STAGE_X}%`,
-            "--floor-vh": "84vh",
-          } as React.CSSProperties
-        }
-      >
+    <div
+      id="hero-reveal"
+      ref={containerRef}
+      className="hero-sticky"
+      style={
+        {
+          position: "relative",
+          height: "100vh",
+          width: "100%",
+          overflow: "hidden",
+          background: `linear-gradient(160deg, ${BG[0]}, ${BG[1]})`,
+          zIndex: 1,
+          // Custom properties so the mobile breakpoint can re-center the
+          // bottle with a plain CSS override, instead of juggling
+          // `!important` on half a dozen individual elements.
+          "--stage-x": `${STAGE_X}%`,
+          "--floor-vh": "84vh",
+        } as React.CSSProperties
+      }
+    >
         {/* ── Giant background typography — blurred for depth, drifts opposite
             the cursor. Desktop only (see .hero-wordmark media query): its
             font-size clamp bottoms out at 4rem, which a 10-letter word like
@@ -499,13 +551,7 @@ export default function HeroReveal() {
 
             {/* The bottle itself — a real 3D turn (rotateY on the perspective
                 parent above), not just an opacity dissolve. */}
-            <AnimatePresence
-              mode="sync"
-              onExitComplete={() => {
-                busyRef.current = false;
-                evaluateRef.current();
-              }}
-            >
+            <AnimatePresence mode="sync">
               {cutout && (
                 <motion.img
                   key={product.src}
@@ -684,15 +730,15 @@ export default function HeroReveal() {
           }}
         >
           <div
-            ref={progressFillRef}
             style={{
               height: "100%",
+              width: `${(activeIndex / (PRODUCTS.length - 1)) * 100}%`,
               background: `linear-gradient(90deg, ${product.accent}, #87ceeb)`,
               boxShadow: `0 0 8px ${product.accent}99`,
+              transition: "width 0.7s cubic-bezier(0.22,1,0.36,1), background 0.4s",
             }}
           />
         </div>
-      </div>
     </div>
   );
 }
