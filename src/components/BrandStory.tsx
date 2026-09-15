@@ -54,7 +54,7 @@ export default function BrandStory() {
               Sourced with Care, Bottled with Purpose
             </h2>
             <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(0.88rem,1.3vw,1rem)", lineHeight: 1.8, color: "#1a3a5c", marginBottom: 20, fontStyle: "italic" }}>
-              &ldquo;Every bottle carries the same standard — clean at the source, untouched all the way to the bottle.&rdquo;
+              &ldquo;Every bottle meets the same standard: clean at the source, untouched all the way to you.&rdquo;
             </p>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.85rem", lineHeight: 1.8, color: "rgba(26,58,92,0.65)", marginBottom: 28 }}>
               Harvested through a closed-loop, zero-contact process. From the source to the bottle, it never touches the open air.
@@ -73,7 +73,7 @@ export default function BrandStory() {
             {[
               { icon: "◈", title: "Natural Origin", desc: "Sourced from natural springs, protected from contact with the surrounding environment." },
               { icon: "◆", title: "Zero Contamination", desc: "Closed-loop collection ensures the water never contacts the open atmosphere." },
-              { icon: "◇", title: "Natural Filtration", desc: "Filtered through natural mineral rock — balanced minerals, zero additives." },
+              { icon: "◇", title: "Natural Filtration", desc: "Filtered through natural mineral rock, so the minerals stay balanced with nothing artificial added." },
             ].map((p) => (
               <div key={p.title} style={{ padding: "18px 20px", background: "rgba(255,255,255,0.96)", border: "1px solid rgba(74,158,202,0.22)", borderRadius: "6px", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", boxShadow: "0 2px 20px rgba(74,158,202,0.13)", transition: "all 0.3s ease" }}
                 onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(74,158,202,0.08)"; el.style.borderColor = "rgba(74,158,202,0.35)"; el.style.transform = "translateX(4px)"; }}

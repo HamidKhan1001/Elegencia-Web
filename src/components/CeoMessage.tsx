@@ -56,7 +56,7 @@ export default function CeoMessage() {
               fontSize: "clamp(1.05rem,1.9vw,1.5rem)", lineHeight: 1.75,
               color: "#eaf4fb", marginBottom: 28,
             }}>
-              &ldquo;Elegancià was never meant to be just another bottle on a shelf. Every liter we bottle carries a promise — to the source it comes from, and to the person who trusts us enough to drink it. That promise is the only thing we&apos;re really in the business of keeping.&rdquo;
+              &ldquo;Elegancià was never meant to be just another bottle on a shelf. Every liter we bottle carries a promise, both to the source it comes from and to the person who trusts us enough to drink it. That promise is the only thing we&apos;re really in the business of keeping.&rdquo;
             </p>
             <h3 style={{ fontFamily: "'Cinzel',serif", fontSize: "1.05rem", fontWeight: 700, letterSpacing: "0.04em", color: "#ffffff", marginBottom: 4 }}>
               M. Sufyan Rashid

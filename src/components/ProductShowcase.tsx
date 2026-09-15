@@ -7,7 +7,7 @@ import { withBasePath } from "@/lib/basePath";
 const products = [
   { name: "Single Bottle", subtitle: "500ml · The Flagship", tag: "Flagship", tagColor: "#4a9eca", features: ["500ml premium water", "Sky-blue cap", "Gift sleeve"], qty: "", img: withBasePath("/products/bottle-500ml-front.png") },
   { name: "Elite Six-Pack", subtitle: "6 × 500ml", tag: "Most Popular", tagColor: "#c9a84c", features: ["6 × 500ml bottles", "Branded carrier", "Gift packaging"], qty: "×6", featured: true, img: withBasePath("/products/bottle-500ml-detail.png") },
-  { name: "Luxury Case", subtitle: "24 × 500ml · Collector's", tag: "Collector's", tagColor: "#7ec8e3", features: ["24 × 500ml bottles", "Numbered edition", "White-glove delivery"], qty: "×24", img: withBasePath("/products/bottle-19l.png") },
+  { name: "Luxury Case", subtitle: "24 × 500ml · Collector's", tag: "Collector's", tagColor: "#7ec8e3", features: ["24 × 500ml bottles", "Numbered edition", "Doorstep delivery"], qty: "×24", img: withBasePath("/products/bottle-19l.png") },
 ];
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()

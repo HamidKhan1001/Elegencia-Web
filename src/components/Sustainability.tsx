@@ -3,10 +3,10 @@
 import { useEffect, useRef } from "react";
 
 const features = [
-  { icon: "♻", title: "100% Recyclable PET", desc: "40% less plastic than industry standard, full structural integrity maintained.", stat: "40% Less Plastic", color: "#4a9eca" },
-  { icon: "◯", title: "Featherweight Design", desc: "The 500ml bottle weighs just 8.4g — lighter than a standard sheet of paper.", stat: "8.4g Only", color: "#a8d8f0" },
-  { icon: "◈", title: "Eco Sky-Blue Cap", desc: "Bio-based polymers, fully recyclable through standard municipal systems.", stat: "Bio-Based", color: "#7ec8e3" },
-  { icon: "✦", title: "Responsible Shipping", desc: "Delivery emissions offset through verified reforestation programs.", stat: "Offset", color: "#c9a84c" },
+  { icon: "♻", title: "100% Recyclable PET", desc: "Uses 40% less plastic than the industry standard, without losing structural integrity.", stat: "40% Less Plastic", color: "#4a9eca" },
+  { icon: "◯", title: "Featherweight Design", desc: "The 500ml bottle weighs just 8.4g, lighter than a standard sheet of paper.", stat: "8.4g Only", color: "#a8d8f0" },
+  { icon: "◈", title: "Eco Sky-Blue Cap", desc: "Made from bio-based polymers that are fully recyclable through standard municipal systems.", stat: "Bio-Based", color: "#7ec8e3" },
+  { icon: "✦", title: "Responsible Shipping", desc: "We offset delivery emissions through verified reforestation programs.", stat: "Offset", color: "#c9a84c" },
 ];
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
