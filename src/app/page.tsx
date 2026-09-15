@@ -6,6 +6,7 @@ import CeoMessage from "@/components/CeoMessage";
 import MineralProfile from "@/components/MineralProfile";
 import Sustainability from "@/components/Sustainability";
 import ProductShowcase from "@/components/ProductShowcase";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <MineralProfile />
       <Sustainability />
       <ProductShowcase />
+      <Contact />
       <Footer />
     </main>
   );

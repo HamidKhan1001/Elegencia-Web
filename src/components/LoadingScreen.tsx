@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { withBasePath } from "@/lib/basePath";
-import { getCutout } from "./hero/cutoutCache";
-
-const LOGO_SRC = withBasePath("/logo.png");
 
 // Shown until the page's resources (images included) have actually
 // finished loading — `window.load` only fires once every image, script,
@@ -15,18 +12,6 @@ const LOGO_SRC = withBasePath("/logo.png");
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
-  // The source file is a square logo on a flat white card — same
-  // background-removal pass the product photos go through, so it sits on
-  // the page's light-blue background instead of showing a white box.
-  const [logoSrc, setLogoSrc] = useState(LOGO_SRC);
-
-  useEffect(() => {
-    let cancelled = false;
-    getCutout(LOGO_SRC).then((c) => {
-      if (!cancelled) setLogoSrc(c.url);
-    }).catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
 
   useEffect(() => {
     const minVisibleMs = 800;
@@ -78,7 +63,7 @@ export default function LoadingScreen() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={logoSrc}
+        src={withBasePath("/logo.png")}
         alt="Elegancià"
         style={{ height: "72px", width: "auto", marginBottom: "18px" }}
       />

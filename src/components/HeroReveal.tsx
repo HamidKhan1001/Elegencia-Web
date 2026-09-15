@@ -12,7 +12,6 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 
 interface Product {
   src: string;
-  wordmark: string;
   step: string;
   titleMain: string;
   titleAccent: string;
@@ -26,7 +25,6 @@ interface Product {
 const PRODUCTS: Product[] = [
   {
     src: withBasePath("/products/bottle-500ml-front.png"),
-    wordmark: "STANDARD",
     step: "Alpine Origin · The Standard Bottle",
     titleMain: "Elegancià",
     titleAccent: "Standard.",
@@ -38,7 +36,6 @@ const PRODUCTS: Product[] = [
   },
   {
     src: withBasePath("/products/bottle-500ml-detail.png"),
-    wordmark: "INDIVIDUAL",
     step: "Alpine Origin · The Individual Bottle",
     titleMain: "Elegancià",
     titleAccent: "Individual.",
@@ -50,7 +47,6 @@ const PRODUCTS: Product[] = [
   },
   {
     src: withBasePath("/products/bottle-19l.png"),
-    wordmark: "DISPENSER",
     step: "The 5-Gallon Dispenser",
     titleMain: "The Grand",
     titleAccent: "Dispenser.",
@@ -296,12 +292,14 @@ export default function HeroReveal() {
         } as React.CSSProperties
       }
     >
-        {/* ── Giant background typography — blurred for depth, drifts opposite
-            the cursor. Desktop only (see .hero-wordmark media query): its
-            font-size clamp bottoms out at 4rem, which a 10-letter word like
-            "INDIVIDUAL" can't fit inside a phone-width viewport without
-            clipping badly at both edges — the mobile brand mark above
-            exists specifically to cover the same branding purpose there. ── */}
+        {/* ── Giant background typography — the brand mark, not the product
+            name. Blurred for depth, drifts opposite the cursor. Desktop
+            only (see .hero-wordmark media query): its font-size clamp
+            bottoms out at 4rem, which doesn't fit a phone-width viewport
+            without clipping badly at both edges — the mobile brand mark
+            above exists specifically to cover the same branding purpose
+            there. Static (it no longer changes with the product), so it
+            needs no AnimatePresence/motion of its own. ── */}
         <div
           ref={wordmarkRef}
           className="hero-wordmark"
@@ -310,6 +308,7 @@ export default function HeroReveal() {
             position: "absolute",
             top: "50%",
             left: "var(--stage-x)",
+            transform: "translate(-50%,-50%)",
             fontFamily: "'Cinzel', serif",
             fontWeight: 900,
             fontSize: "clamp(4rem, 19vw, 17rem)",
@@ -323,18 +322,7 @@ export default function HeroReveal() {
             zIndex: 1,
           }}
         >
-          <AnimatePresence mode="sync">
-            <motion.span
-              key={product.wordmark}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: IMAGE_DURATION, ease: EASE }}
-              style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}
-            >
-              {product.wordmark}
-            </motion.span>
-          </AnimatePresence>
+          ELEGANCIÀ
         </div>
 
         {/* Vignette — settles focus onto the bottle, keeps the frame's edges quiet */}

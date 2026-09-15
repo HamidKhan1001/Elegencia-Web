@@ -37,7 +37,7 @@ export default function Footer() {
 
           {[
             { title: "Product", links: ["500ml Bottle", "6-Pack Reserve", "Luxury Case", "Gift Sets"] },
-            { title: "Company", links: ["Our Story", "Sustainability", "Lab Reports", "Press"] },
+            { title: "Company", links: ["Our Story", "Sustainability", "Lab Reports", "Contact"] },
             { title: "Legal", links: ["Privacy Policy", "Terms of Use", "Refund Policy", "Cookie Policy"] },
           ].map((col) => (
             <div key={col.title}>
@@ -45,7 +45,7 @@ export default function Footer() {
               <ul style={{ listStyle: "none" }}>
                 {col.links.map((link) => (
                   <li key={link} style={{ marginBottom: 11 }}>
-                    <a href="#" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.78rem", color: "rgba(26,58,92,0.5)", textDecoration: "none", transition: "color 0.3s ease" }}
+                    <a href={link === "Contact" ? "#contact" : "#"} style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.78rem", color: "rgba(26,58,92,0.5)", textDecoration: "none", transition: "color 0.3s ease" }}
                       onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#1a3a5c")}
                       onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(26,58,92,0.5)")}
                     >{link}</a>
