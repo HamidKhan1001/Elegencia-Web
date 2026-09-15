@@ -25,18 +25,18 @@ interface Product {
 const PRODUCTS: Product[] = [
   {
     src: withBasePath("/products/bottle-500ml-front.png"),
-    step: "Alpine Origin · The Standard Bottle",
+    step: "Natural Origin · The Standard Bottle",
     titleMain: "Elegancià",
     titleAccent: "Standard.",
-    sub: "The flagship pour — pH-balanced water, bottled at the source for everyday elevation.",
+    sub: "The flagship pour — pH-balanced water, bottled at the source.",
     stats: ["pH 7.8", "TDS 45mg/L", "Silica 14mg/L"],
-    signature: "Naturally sourced, bottled at the source.",
+    signature: "Naturally sourced, bottled with care.",
     accent: "#2fa9d6",
     heightVh: 58,
   },
   {
     src: withBasePath("/products/bottle-500ml-detail.png"),
-    step: "Alpine Origin · The Individual Bottle",
+    step: "Natural Origin · The Individual Bottle",
     titleMain: "Elegancià",
     titleAccent: "Individual.",
     sub: "The same source, the same standard — sealed at 500ml for wherever the day takes you.",
@@ -50,8 +50,8 @@ const PRODUCTS: Product[] = [
     step: "The 5-Gallon Dispenser",
     titleMain: "The Grand",
     titleAccent: "Dispenser.",
-    sub: "For the home and office that never runs dry — the full reserve, delivered white-glove.",
-    stats: ["19L", "Naturally Sourced", "White-Glove Delivery"],
+    sub: "For the home and office that never runs dry — a full reserve, delivered to your door.",
+    stats: ["19L", "Naturally Sourced", "Doorstep Delivery"],
     signature: "The reserve that never runs dry.",
     accent: "#1a7fbf",
     heightVh: 74,
@@ -599,7 +599,7 @@ export default function HeroReveal() {
                     marginBottom: "18px",
                   }}
                 >
-                  The Water of Elites
+                  Naturally Sourced Water
                 </span>
                 <h1
                   className="hero-title"

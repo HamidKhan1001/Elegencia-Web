@@ -63,7 +63,7 @@ export default function LoadingScreen() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={withBasePath("/logo.png")}
+        src={withBasePath("/logo-a.png")}
         alt="Elegancià"
         style={{ height: "72px", width: "auto", marginBottom: "18px" }}
       />

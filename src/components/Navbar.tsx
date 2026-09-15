@@ -40,7 +40,7 @@ export default function Navbar() {
 
         <a href="#" style={{ display: "flex", alignItems: "center", gap: "10px", fontFamily: "'Cinzel',serif", fontSize: "1.2rem", fontWeight: 700, letterSpacing: "0.18em", color: "#0a1628", textDecoration: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={withBasePath("/logo.png")} alt="Elegancià" style={{ height: "30px", width: "auto" }} />
+          <img src={withBasePath("/logo-a.png")} alt="Elegancià" style={{ height: "30px", width: "auto" }} />
           ELEGANCIÀ
         </a>
 
