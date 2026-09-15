@@ -255,16 +255,6 @@ body {
   }
 }
 
-/* The "About Us" frame-sequence section is dropped entirely on mobile —
-   not just the bottle animation (already skipped, see HeroScroll.tsx) but
-   the whole section, text included. display:none removes its 400vh
-   scroll-track from layout too, so nothing is reserved for it. */
-@media (max-width: 1080px) {
-  #about {
-    display: none !important;
-  }
-}
-
 /* The hero caption is vertically centered with top:50% / translateY(-50%) —
    that centers correctly at any height, but the text sizes below were tuned
    against a normal full-height window. They only respond to *width*

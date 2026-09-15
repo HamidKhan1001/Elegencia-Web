@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { withBasePath } from "@/lib/basePath";
 
 // Shown until the page's resources (images included) have actually
 // finished loading — `window.load` only fires once every image, script,
@@ -60,17 +61,23 @@ export default function LoadingScreen() {
         pointerEvents: fading ? "none" : "auto",
       }}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={withBasePath("/logo.png")}
+        alt="Elegancià"
+        style={{ height: "72px", width: "auto", marginBottom: "18px" }}
+      />
       <div
         style={{
           fontFamily: "'Cinzel', serif",
           fontWeight: 700,
-          fontSize: "clamp(1.5rem, 5vw, 2.2rem)",
+          fontSize: "clamp(1.1rem, 3.6vw, 1.5rem)",
           letterSpacing: "0.28em",
           color: "#0a1628",
           marginBottom: "24px",
         }}
       >
-        ELEGANC<span style={{ color: "#4a9eca" }}>Ì</span>A
+        ELEGANCI<span style={{ color: "#4a9eca" }}>À</span>
       </div>
       <div
         style={{

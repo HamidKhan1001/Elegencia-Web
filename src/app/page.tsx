@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import LoadingScreen from "@/components/LoadingScreen";
 import HeroReveal from "@/components/HeroReveal";
-import HeroScroll from "@/components/HeroScroll";
 import BrandStory from "@/components/BrandStory";
 import CeoMessage from "@/components/CeoMessage";
 import MineralProfile from "@/components/MineralProfile";
@@ -18,10 +17,7 @@ export default function Home() {
       {/* Hero: center-anchored bottle with a smoky/atmospheric reveal between products */}
       <HeroReveal />
 
-      {/* About Us: cinematic frame-sequence reveal, telling the brand's story */}
-      <HeroScroll />
-
-      {/* Sections stack naturally after the hero scroll tracks */}
+      {/* Sections stack naturally after the hero scroll track */}
       <BrandStory />
       <CeoMessage />
       <MineralProfile />

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Elegancìa — The Water of Elites",
-  description: "Pure. Pristine. Perfection. Glacial water filtered by nature, crafted for the elite.",
+  title: "Elegancià — The Water of Elites",
+  description: "Naturally sourced premium drinking water, bottled with care.",
 };
 
 export default function RootLayout({

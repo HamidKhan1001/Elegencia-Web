@@ -28,11 +28,11 @@ const PRODUCTS: Product[] = [
     src: withBasePath("/products/bottle-500ml-front.png"),
     wordmark: "STANDARD",
     step: "Alpine Origin · The Standard Bottle",
-    titleMain: "Elegancìa",
+    titleMain: "Elegancià",
     titleAccent: "Standard.",
-    sub: "The flagship pour — pH-balanced glacial water, bottled at the source for everyday elevation.",
+    sub: "The flagship pour — pH-balanced water, bottled at the source for everyday elevation.",
     stats: ["pH 7.8", "TDS 45mg/L", "Silica 14mg/L"],
-    signature: "Poured from ten thousand years of ice.",
+    signature: "Naturally sourced, bottled at the source.",
     accent: "#2fa9d6",
     heightVh: 58,
   },
@@ -40,7 +40,7 @@ const PRODUCTS: Product[] = [
     src: withBasePath("/products/bottle-500ml-detail.png"),
     wordmark: "INDIVIDUAL",
     step: "Alpine Origin · The Individual Bottle",
-    titleMain: "Elegancìa",
+    titleMain: "Elegancià",
     titleAccent: "Individual.",
     sub: "The same source, the same standard — sealed at 500ml for wherever the day takes you.",
     stats: ["500ml", "Grab-and-Go", "Turquoise Seal"],
@@ -355,7 +355,7 @@ export default function HeroReveal() {
             color: TEXT_COLOR,
           }}
         >
-          ELEGANCÌA
+          ELEGANCIÀ
         </div>
 
         {/* ── Top chrome: step label + progress dots ── */}

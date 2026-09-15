@@ -51,16 +51,16 @@ export default function BrandStory() {
           {/* Left */}
           <div className="reveal-left">
             <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.6rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.15, color: "#0a1628", marginBottom: 20 }}>
-              Born from the World&apos;s Oldest Ice
+              Sourced with Care, Bottled with Purpose
             </h2>
             <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(0.88rem,1.3vw,1rem)", lineHeight: 1.8, color: "#1a3a5c", marginBottom: 20, fontStyle: "italic" }}>
-              &ldquo;In the silence of the Arctic, nature creates water of absolute perfection — untouched and timeless.&rdquo;
+              &ldquo;Every bottle carries the same standard — clean at the source, untouched all the way to the bottle.&rdquo;
             </p>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.85rem", lineHeight: 1.8, color: "rgba(26,58,92,0.65)", marginBottom: 28 }}>
-              Harvested through a proprietary zero-contact process. From the moment it falls as snow to the moment it reaches your lips, it remains completely untouched.
+              Harvested through a closed-loop, zero-contact process. From the source to the bottle, it never touches the open air.
             </p>
             {/* Stats */}
-            {[["10,000", "Years of glacial formation"], ["0", "Artificial additives"], ["Arctic Circle", "Source location"]].map(([num, label]) => (
+            {[["100%", "Naturally sourced"], ["0", "Artificial additives"], ["ISO 9001", "Certified process"]].map(([num, label]) => (
               <div key={label} style={{ display: "flex", alignItems: "center", gap: 18, padding: "12px 18px", marginBottom: 8, background: "rgba(74,158,202,0.05)", border: "1px solid rgba(74,158,202,0.12)", borderRadius: "4px" }}>
                 <span style={{ fontFamily: "'Cinzel',serif", fontSize: "1.3rem", fontWeight: 700, color: "#4a9eca", minWidth: 100 }}>{num}</span>
                 <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.78rem", color: "#1a3a5c" }}>{label}</span>
@@ -71,9 +71,9 @@ export default function BrandStory() {
           {/* Right — 3 pillars */}
           <div className="reveal-right" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              { icon: "❄", title: "Glacial Origin", desc: "Sourced from Arctic glaciers formed over 10,000 years, untouched by modern civilization." },
-              { icon: "◈", title: "Zero Contamination", desc: "Closed-loop collection ensures the water never contacts the open atmosphere." },
-              { icon: "◇", title: "Natural Filtration", desc: "Travels through quartzite and granite — perfect mineral balance, zero additives." },
+              { icon: "◈", title: "Natural Origin", desc: "Sourced from natural springs, protected from contact with the surrounding environment." },
+              { icon: "◆", title: "Zero Contamination", desc: "Closed-loop collection ensures the water never contacts the open atmosphere." },
+              { icon: "◇", title: "Natural Filtration", desc: "Filtered through natural mineral rock — balanced minerals, zero additives." },
             ].map((p) => (
               <div key={p.title} style={{ padding: "18px 20px", background: "rgba(255,255,255,0.96)", border: "1px solid rgba(74,158,202,0.22)", borderRadius: "6px", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", boxShadow: "0 2px 20px rgba(74,158,202,0.13)", transition: "all 0.3s ease" }}
                 onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(74,158,202,0.08)"; el.style.borderColor = "rgba(74,158,202,0.35)"; el.style.transform = "translateX(4px)"; }}

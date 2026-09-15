@@ -16,8 +16,8 @@ export default function Footer() {
         {/* Columns */}
         <div className="footer-columns" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 52 }}>
           <div>
-            <p style={{ fontFamily: "'Cinzel',serif", fontSize: "1.1rem", fontWeight: 700, letterSpacing: "0.18em", color: "#0a1628", marginBottom: 14 }}>ELEGANCÌA</p>
-            <p className="footer-blurb" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", lineHeight: 1.75, color: "rgba(26,58,92,0.55)", maxWidth: 220 }}>The water of elites. Sourced from Arctic glaciers, crafted for those who accept nothing but the finest.</p>
+            <p style={{ fontFamily: "'Cinzel',serif", fontSize: "1.1rem", fontWeight: 700, letterSpacing: "0.18em", color: "#0a1628", marginBottom: 14 }}>ELEGANCIÀ</p>
+            <p className="footer-blurb" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", lineHeight: 1.75, color: "rgba(26,58,92,0.55)", maxWidth: 220 }}>The Water of Elites. Naturally sourced, bottled with care at every step.</p>
             <div className="footer-socials" style={{ display: "flex", gap: 12, marginTop: 22 }}>
               {["𝕏", "◎", "in"].map((icon) => (
                 <button key={icon} style={{
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom" style={{ borderTop: "1px solid rgba(74,158,202,0.15)", paddingTop: 24, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-          <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.7rem", color: "rgba(26,58,92,0.35)" }}>© 2026 Elegancìa Ltd. All rights reserved.</p>
+          <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.7rem", color: "rgba(26,58,92,0.35)" }}>© 2026 Elegancià Ltd. All rights reserved.</p>
           <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.7rem", color: "rgba(26,58,92,0.25)", letterSpacing: "0.12em" }}>Pure. Pristine. Perfection.</p>
         </div>
       </div>
