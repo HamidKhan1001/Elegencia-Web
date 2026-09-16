@@ -43,10 +43,11 @@ export default function Navbar() {
     }}>
       <nav style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: "10px", fontFamily: "'Cinzel',serif", fontSize: "1.2rem", fontWeight: 700, letterSpacing: "0.18em", color: "#0a1628", textDecoration: "none" }}>
+        <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+          {/* The logo image already carries the wordmark, so there's no
+              separate text sibling here anymore. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={withBasePath("/logo-a.png")} alt="Elegancià" style={{ height: "30px", width: "auto" }} />
-          ELEGANCIÀ
+          <img src={withBasePath("/logo-full.png")} alt="Elegancià, the water of elites" style={{ height: "34px", width: "auto" }} />
         </a>
 
         {/* inline display removed — Tailwind hidden/md:flex controls visibility */}

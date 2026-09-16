@@ -388,14 +388,10 @@ export default function HeroReveal() {
             right: 0,
             textAlign: "center",
             zIndex: 6,
-            fontFamily: "'Cinzel',serif",
-            fontWeight: 700,
-            fontSize: "1.05rem",
-            letterSpacing: "0.2em",
-            color: TEXT_COLOR,
           }}
         >
-          ELEGANCIÀ
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={withBasePath("/logo-full.png")} alt="" style={{ height: "26px", width: "auto", display: "inline-block" }} />
         </div>
 
         {/* ── Top chrome: step label + progress dots ── */}

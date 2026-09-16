@@ -61,24 +61,14 @@ export default function LoadingScreen() {
         pointerEvents: fading ? "none" : "auto",
       }}
     >
+      {/* The logo image already carries the wordmark and tagline, so
+          there's no separate text underneath it anymore. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={withBasePath("/logo-a.png")}
-        alt="Elegancià"
-        style={{ height: "72px", width: "auto", marginBottom: "18px" }}
+        src={withBasePath("/logo-full.png")}
+        alt="Elegancià, the water of elites"
+        style={{ height: "96px", width: "auto", marginBottom: "24px" }}
       />
-      <div
-        style={{
-          fontFamily: "'Cinzel', serif",
-          fontWeight: 700,
-          fontSize: "clamp(1.1rem, 3.6vw, 1.5rem)",
-          letterSpacing: "0.28em",
-          color: "#0a1628",
-          marginBottom: "24px",
-        }}
-      >
-        ELEGANCI<span style={{ color: "#4a9eca" }}>À</span>
-      </div>
       <div
         style={{
           width: "140px",
