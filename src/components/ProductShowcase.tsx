@@ -89,7 +89,7 @@ export default function ProductShowcase() {
                 <div style={{ height: 120, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", marginBottom: 16 }}>
                   <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "60%", height: 14, background: `radial-gradient(ellipse,${p.tagColor}25,transparent)`, filter: "blur(6px)" }} />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={cutouts[p.img] || p.img} alt={p.name} style={{ height: 110, objectFit: "contain", filter: active === i ? "brightness(1.1) saturate(1.2)" : "brightness(0.92) saturate(0.85)", transition: "filter 0.35s ease", animation: active === i ? "float 4s ease-in-out infinite" : "none" }} />
+                  <img src={cutouts[p.img] || p.img} alt={p.name} loading="lazy" decoding="async" style={{ height: 110, objectFit: "contain", filter: active === i ? "brightness(1.1) saturate(1.2)" : "brightness(0.92) saturate(0.85)", transition: "filter 0.35s ease", animation: active === i ? "float 4s ease-in-out infinite" : "none" }} />
                   {p.qty && <div style={{ position: "absolute", top: 4, right: 4, fontFamily: "'Cinzel',serif", fontSize: "1rem", fontWeight: 700, color: p.tagColor, opacity: 0.65 }}>{p.qty}</div>}
                 </div>
 

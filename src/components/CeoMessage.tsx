@@ -42,7 +42,7 @@ export default function CeoMessage() {
             }}>
               <Image
                 src={withBasePath("/ceo-sufyan.jpeg")}
-                alt="M. Sufyan Rashid, Founder & CEO of Elegancià"
+                alt="M. Sufyan Rasheed, Founder & CEO of Elegancià"
                 fill
                 sizes="240px"
                 style={{ objectFit: "cover" }}
@@ -59,7 +59,7 @@ export default function CeoMessage() {
               &ldquo;Elegancià was never meant to be just another bottle on a shelf. Every liter we bottle carries a promise, both to the source it comes from and to the person who trusts us enough to drink it. That promise is the only thing we&apos;re really in the business of keeping.&rdquo;
             </p>
             <h3 style={{ fontFamily: "'Cinzel',serif", fontSize: "1.05rem", fontWeight: 700, letterSpacing: "0.04em", color: "#ffffff", marginBottom: 4 }}>
-              M. Sufyan Rashid
+              M. Sufyan Rasheed
             </h3>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 600 }}>
               Founder &amp; CEO, Elegancià

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import VideoEmbed from "./VideoEmbed";
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
 // evaluated at module scope differs between the server render and the
@@ -87,6 +88,14 @@ export default function BrandStory() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Video: click-to-load, so it costs nothing until someone actually plays it */}
+        <div className="reveal" style={{ marginTop: 56, maxWidth: 760, marginLeft: "auto", marginRight: "auto" }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, textAlign: "center", marginBottom: 18 }}>
+            See It For Yourself
+          </p>
+          <VideoEmbed youtubeId="cwrkrQe3nHo" title="Elegancià, from source to bottle" />
         </div>
       </div>
     </div>
