@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { getCutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
 
-// The 1500ml pack has no distinct product photo of its own yet — it reuses
-// the 500ml bottle image rather than the 19L dispenser jug, which would be
-// a far more misleading stand-in for a 1.5L bottle than a same-family
-// 500ml shot is.
+// There's no real 1500ml bottle photo yet. Reusing either 500ml shot or
+// the 19L jug would show the wrong bottle size as if it were correct, so
+// that one card gets a plain text placeholder (`photoPending`) instead of
+// a photo that quietly misrepresents what you're buying.
 const products = [
   { name: "500ml Bottle", subtitle: "Single Bottle", tag: "Single", tagColor: "#4a9eca", features: ["500ml", "Sky-blue cap"], qty: "", img: withBasePath("/products/bottle-500ml-front.png") },
   { name: "500ml Pack", subtitle: "12 × 500ml", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-detail.png") },
-  { name: "1500ml Pack", subtitle: "6 × 1.5L", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: withBasePath("/products/bottle-500ml-front.png") },
+  { name: "1500ml Pack", subtitle: "6 × 1.5L", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: null, photoPending: true },
   { name: "19L Dispenser", subtitle: "Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l.png") },
 ];
 
@@ -41,9 +41,10 @@ export default function ProductShowcase() {
   useEffect(() => {
     let cancelled = false;
     products.forEach((p) => {
+      if (!p.img) return;
       getCutout(p.img).then((cutout) => {
         if (cancelled) return;
-        setCutouts((prev) => ({ ...prev, [p.img]: cutout.url }));
+        setCutouts((prev) => ({ ...prev, [p.img as string]: cutout.url }));
       }).catch(() => {});
     });
     return () => { cancelled = true; };
@@ -92,9 +93,20 @@ export default function ProductShowcase() {
 
                 {/* Bottle */}
                 <div style={{ height: 120, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", marginBottom: 16 }}>
-                  <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "60%", height: 14, background: `radial-gradient(ellipse,${p.tagColor}25,transparent)`, filter: "blur(6px)" }} />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={cutouts[p.img] || p.img} alt={p.name} loading="lazy" decoding="async" style={{ height: 110, objectFit: "contain", filter: active === i ? "brightness(1.1) saturate(1.2)" : "brightness(0.92) saturate(0.85)", transition: "filter 0.35s ease", animation: active === i ? "float 4s ease-in-out infinite" : "none" }} />
+                  {p.img ? (
+                    <>
+                      <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "60%", height: 14, background: `radial-gradient(ellipse,${p.tagColor}25,transparent)`, filter: "blur(6px)" }} />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={cutouts[p.img] || p.img} alt={p.name} loading="lazy" decoding="async" style={{ height: 110, objectFit: "contain", filter: active === i ? "brightness(1.1) saturate(1.2)" : "brightness(0.92) saturate(0.85)", transition: "filter 0.35s ease" }} />
+                    </>
+                  ) : (
+                    // No real photo for this size yet — say so plainly
+                    // instead of showing a bottle photo that's the wrong size.
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, color: `${p.tagColor}` }}>
+                      <span style={{ fontFamily: "'Cinzel',serif", fontSize: "1.4rem", fontWeight: 700 }}>1.5L</span>
+                      <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.6 }}>Photo coming soon</span>
+                    </div>
+                  )}
                   {p.qty && <div style={{ position: "absolute", top: 4, right: 4, fontFamily: "'Cinzel',serif", fontSize: "1rem", fontWeight: 700, color: p.tagColor, opacity: 0.65 }}>{p.qty}</div>}
                 </div>
 

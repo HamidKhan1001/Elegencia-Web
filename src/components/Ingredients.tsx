@@ -63,12 +63,10 @@ export default function Ingredients() {
               width: 280, height: 280, borderRadius: "50%",
               background: "radial-gradient(circle, rgba(74,158,202,0.16), transparent 70%)",
             }} />
-            <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-              {bottleUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={bottleUrl} alt="Elegancià 500ml bottle" style={{ height: 340, width: "auto", objectFit: "contain", filter: "drop-shadow(0 20px 30px rgba(10,22,40,0.2))", position: "relative", zIndex: 1 }} />
-              )}
-            </motion.div>
+            {bottleUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={bottleUrl} alt="Elegancià 500ml bottle" style={{ height: 340, width: "auto", objectFit: "contain", filter: "drop-shadow(0 20px 30px rgba(10,22,40,0.2))", position: "relative", zIndex: 1 }} />
+            )}
           </motion.div>
 
           <motion.button
@@ -80,9 +78,7 @@ export default function Ingredients() {
             aria-label="View the ingredient label full size"
             style={{ background: "none", border: "none", padding: 0, cursor: "zoom-in" }}
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
+            <div
               style={{
                 borderRadius: 14, overflow: "hidden",
                 boxShadow: "0 24px 60px rgba(10,22,40,0.22)",
@@ -94,7 +90,7 @@ export default function Ingredients() {
                   physically on the shelf. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={LABEL_SRC} alt="Elegancià ingredient and mineral content label" loading="lazy" decoding="async" style={{ height: 340, width: "auto", display: "block" }} />
-            </motion.div>
+            </div>
           </motion.button>
         </div>
 

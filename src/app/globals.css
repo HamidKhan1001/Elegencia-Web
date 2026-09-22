@@ -38,10 +38,6 @@ body {
   100% { transform: translateX(280px); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
-}
 
 .reveal {
   opacity: 0; transform: translateY(28px);
@@ -60,44 +56,6 @@ body {
   transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-@keyframes scrollDot {
-  0%   { transform: translateY(0); opacity: 1; }
-  60%  { transform: translateY(12px); opacity: 0; }
-  61%  { transform: translateY(0); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes bottleFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-14px); }
-}
-
-@keyframes taglineReveal {
-  0%   { opacity: 0; transform: translateX(16px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes statLineReveal {
-  0%   { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Stick-slip motion — a real drop on glass holds from surface tension, then
-   slips, then holds again; a constant-speed fall is what reads as fake. */
-@keyframes dropletSlide {
-  0%   { transform: translateY(0); opacity: 0.9; }
-  8%   { transform: translateY(1px); }
-  22%  { transform: translateY(1px); }
-  34%  { transform: translateY(34px); }
-  38%  { transform: translateY(34px); }
-  55%  { transform: translateY(78px); opacity: 0.9; }
-  62%  { opacity: 0; }
-  63%  { transform: translateY(-6px); opacity: 0; }
-  64%  { transform: translateY(0); opacity: 0; }
-  74%  { opacity: 0.9; }
-  100% { transform: translateY(0); opacity: 0.9; }
-}
 
 /* Hero: the bottle sits right-of-center on the stage; the caption sits
    beside it so it's never on top of the product. Below ~1080px there isn't
