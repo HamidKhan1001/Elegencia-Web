@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import VideoEmbed from "./VideoEmbed";
+import CertificateGrid from "./CertificateGrid";
+import { CERTIFICATES } from "@/lib/certificates";
+import { withBasePath } from "@/lib/basePath";
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
 // evaluated at module scope differs between the server render and the
@@ -44,50 +47,33 @@ export default function BrandStory() {
 
         {/* Section tag */}
         <div className="reveal" style={{ marginBottom: 32 }}>
-          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)" }}>The Pure Origin</span>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)" }}>Made in Peshawar</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 48, alignItems: "start" }}>
-
-          {/* Left */}
-          <div className="reveal-left">
-            <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.6rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.15, color: "#0a1628", marginBottom: 20 }}>
-              Sourced with Care, Bottled with Purpose
-            </h2>
-            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(0.88rem,1.3vw,1rem)", lineHeight: 1.8, color: "#1a3a5c", marginBottom: 20, fontStyle: "italic" }}>
-              &ldquo;Every bottle meets the same standard: clean at the source, untouched all the way to you.&rdquo;
-            </p>
-            <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.85rem", lineHeight: 1.8, color: "rgba(26,58,92,0.65)", marginBottom: 28 }}>
-              Harvested through a closed-loop, zero-contact process. From the source to the bottle, it never touches the open air.
-            </p>
-            {/* Stats */}
-            {[["100%", "Naturally sourced"], ["0", "Artificial additives"], ["ISO 9001", "Certified process"]].map(([num, label]) => (
-              <div key={label} style={{ display: "flex", alignItems: "center", gap: 18, padding: "12px 18px", marginBottom: 8, background: "rgba(74,158,202,0.05)", border: "1px solid rgba(74,158,202,0.12)", borderRadius: "4px" }}>
-                <span style={{ fontFamily: "'Cinzel',serif", fontSize: "1.3rem", fontWeight: 700, color: "#4a9eca", minWidth: 100 }}>{num}</span>
+        <div className="reveal-left" style={{ marginBottom: 48 }}>
+          <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.6rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.15, color: "#0a1628", marginBottom: 20, maxWidth: 620 }}>
+            Bottled in Peshawar, Pakistan
+          </h2>
+          <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(26,58,92,0.7)", marginBottom: 28, maxWidth: 620 }}>
+            Elegancià is bottled at Plot No. 84-A, Industrial Estate, Hayatabad, Peshawar, under license from the KP Food Safety and Halal Food Authority and the Pakistan Standards and Quality Control Authority.
+          </p>
+          {/* Stats */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            {[["0", "Artificial additives"], ["PS 4639:2018", "Pakistan Standard"]].map(([num, label]) => (
+              <div key={label} style={{ display: "flex", alignItems: "center", gap: 14, padding: "12px 18px", background: "rgba(74,158,202,0.05)", border: "1px solid rgba(74,158,202,0.12)", borderRadius: "4px" }}>
+                <span style={{ fontFamily: "'Cinzel',serif", fontSize: "1.1rem", fontWeight: 700, color: "#4a9eca" }}>{num}</span>
                 <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.78rem", color: "#1a3a5c" }}>{label}</span>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Right — 3 pillars */}
-          <div className="reveal-right" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {[
-              { icon: "◈", title: "Natural Origin", desc: "Sourced from natural springs, protected from contact with the surrounding environment." },
-              { icon: "◆", title: "Zero Contamination", desc: "Closed-loop collection ensures the water never contacts the open atmosphere." },
-              { icon: "◇", title: "Natural Filtration", desc: "Filtered through natural mineral rock, so the minerals stay balanced with nothing artificial added." },
-            ].map((p) => (
-              <div key={p.title} style={{ padding: "18px 20px", background: "rgba(255,255,255,0.96)", border: "1px solid rgba(74,158,202,0.22)", borderRadius: "6px", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", boxShadow: "0 2px 20px rgba(74,158,202,0.13)", transition: "all 0.3s ease" }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(74,158,202,0.08)"; el.style.borderColor = "rgba(74,158,202,0.35)"; el.style.transform = "translateX(4px)"; }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(255,255,255,0.8)"; el.style.borderColor = "rgba(74,158,202,0.2)"; el.style.transform = "none"; }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: "1.2rem", color: "#4a9eca" }}>{p.icon}</span>
-                  <h3 style={{ fontFamily: "'Cinzel',serif", fontSize: "0.78rem", fontWeight: 700, color: "#0a1628", letterSpacing: "0.08em", textTransform: "uppercase" }}>{p.title}</h3>
-                </div>
-                <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.78rem", lineHeight: 1.65, color: "rgba(26,58,92,0.65)", paddingLeft: 30 }}>{p.desc}</p>
-              </div>
-            ))}
-          </div>
+        {/* Real certificates, not a claim about them — click any one to read it in full */}
+        <div className="reveal-right">
+          <CertificateGrid certificates={CERTIFICATES} />
+          <p style={{ marginTop: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem" }}>
+            <a href={withBasePath("/license")} style={{ color: "#4a9eca", fontWeight: 600, textDecoration: "none" }}>See all license details →</a>
+          </p>
         </div>
 
         {/* Video: click-to-load, so it costs nothing until someone actually plays it */}

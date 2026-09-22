@@ -4,10 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { getCutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
 
+// The 1500ml pack has no distinct product photo of its own yet — it reuses
+// the 500ml bottle image rather than the 19L dispenser jug, which would be
+// a far more misleading stand-in for a 1.5L bottle than a same-family
+// 500ml shot is.
 const products = [
-  { name: "Single Bottle", subtitle: "500ml · The Flagship", tag: "Flagship", tagColor: "#4a9eca", features: ["500ml premium water", "Sky-blue cap", "Gift sleeve"], qty: "", img: withBasePath("/products/bottle-500ml-front.png") },
-  { name: "Small Pack", subtitle: "12 × 500ml", tag: "Most Popular", tagColor: "#c9a84c", features: ["12 × 500ml bottles", "Branded carrier", "Gift packaging"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-detail.png") },
-  { name: "Large Pack", subtitle: "6 × 1.5L", tag: "Family Size", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles", "Sturdy carry case", "Doorstep delivery"], qty: "×6", img: withBasePath("/products/bottle-19l.png") },
+  { name: "500ml Bottle", subtitle: "Single Bottle", tag: "Single", tagColor: "#4a9eca", features: ["500ml", "Sky-blue cap"], qty: "", img: withBasePath("/products/bottle-500ml-front.png") },
+  { name: "500ml Pack", subtitle: "12 × 500ml", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-detail.png") },
+  { name: "1500ml Pack", subtitle: "6 × 1.5L", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: withBasePath("/products/bottle-500ml-front.png") },
+  { name: "19L Dispenser", subtitle: "Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l.png") },
 ];
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
@@ -64,8 +69,8 @@ export default function ProductShowcase() {
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px", width: "100%", position: "relative", zIndex: 1 }}>
 
         <div className="reveal" style={{ textAlign: "center", marginBottom: 32 }}>
-          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 12, display: "inline-block" }}>Product Collection</span>
-          <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.5rem,2.8vw,2.4rem)", fontWeight: 700, color: "#0a1628", marginTop: 12 }}>Choose Your Reserve</h2>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 12, display: "inline-block" }}>Order</span>
+          <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.5rem,2.8vw,2.4rem)", fontWeight: 700, color: "#0a1628", marginTop: 12 }}>Choose a Size</h2>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>

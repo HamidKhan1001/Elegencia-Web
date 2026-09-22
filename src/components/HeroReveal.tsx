@@ -17,7 +17,6 @@ interface Product {
   titleAccent: string;
   sub: string;
   stats: string[];
-  signature: string;
   accent: string;
   heightVh: number;
 }
@@ -25,34 +24,31 @@ interface Product {
 const PRODUCTS: Product[] = [
   {
     src: withBasePath("/products/bottle-500ml-front.png"),
-    step: "Natural Origin · The Regular Bottle",
+    step: "500ml Bottle",
     titleMain: "Elegancià",
-    titleAccent: "Regular.",
-    sub: "Our everyday 500ml bottle, pH-balanced and bottled at the source.",
-    stats: ["pH 7.8", "TDS 45mg/L", "Silica 14mg/L"],
-    signature: "Naturally sourced, bottled with care.",
+    titleAccent: "500ml.",
+    sub: "Our everyday bottle. 12 per pack.",
+    stats: ["pH 6.5–8.5", "TDS 130–250mg/L", "12 per pack"],
     accent: "#2fa9d6",
     heightVh: 58,
   },
   {
     src: withBasePath("/products/bottle-500ml-detail.png"),
-    step: "Natural Origin · The Large Bottle",
+    step: "1500ml Bottle",
     titleMain: "Elegancià",
-    titleAccent: "Large.",
-    sub: "Same water, same standard, just more of it in a 1.5 liter bottle.",
-    stats: ["1.5L", "Family Size", "Turquoise Seal"],
-    signature: "Enough to share, however the day goes.",
+    titleAccent: "1500ml.",
+    sub: "The same water, sealed at 1.5 liters. 6 per pack.",
+    stats: ["pH 6.5–8.5", "TDS 130–250mg/L", "6 per pack"],
     accent: "#3fb3dd",
     heightVh: 66,
   },
   {
     src: withBasePath("/products/bottle-19l.png"),
-    step: "The 19L Dispenser",
+    step: "19L Dispenser",
     titleMain: "Elegancià",
-    titleAccent: "Dispenser.",
-    sub: "For homes and offices that go through a lot of water, delivered right to your door.",
-    stats: ["19L", "Naturally Sourced", "Doorstep Delivery"],
-    signature: "The reserve that never runs dry.",
+    titleAccent: "19L.",
+    sub: "For homes and offices that go through a lot of water.",
+    stats: ["pH 6.5–8.5", "TDS 130–250mg/L", "Doorstep delivery"],
     accent: "#1a7fbf",
     heightVh: 74,
   },
@@ -67,14 +63,10 @@ const STAGE_X = 58; // % — bottle sits right-of-center, clear of the side capt
 
 // Framer Motion owns the actual choreography now — a real spring/easing
 // engine instead of hand-timed setTimeouts. The image genuinely turns in 3D
-// (rotateY on a perspective parent) rather than just cross-fading opacity;
-// text and tagline run on their own, slightly faster/slower schedules off
-// the same trigger, which is what makes a multi-layer reveal feel directed
-// rather than everything landing on the same beat.
+// (rotateY on a perspective parent) rather than just cross-fading opacity.
 const EASE = [0.22, 1, 0.36, 1] as const;
 const IMAGE_DURATION = 0.9;
 const TEXT_DURATION = 0.5;
-const TAGLINE_DELAY = 0.55;
 
 interface Snowflake {
   id: number;
@@ -563,10 +555,6 @@ export default function HeroReveal() {
           </div>
         </div>
 
-        {/* On wide screens the caption and tagline sit either side of the
-            bottle; below the breakpoint this wrapper becomes a plain
-            stacked column so they never have to guess each other's height
-            to avoid overlapping. */}
         <div className="hero-text-stack">
           {/* ── Side caption: sits beside the bottle, never over it ── */}
           <div className="hero-caption" style={{ zIndex: 6 }}>
@@ -582,21 +570,6 @@ export default function HeroReveal() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: TEXT_DURATION, ease: EASE }}
             >
-                <span
-                  className="hero-eyebrow"
-                  style={{
-                    display: "inline-block",
-                    fontFamily: "'Plus Jakarta Sans',sans-serif",
-                    fontSize: "0.68rem",
-                    letterSpacing: "0.28em",
-                    textTransform: "uppercase",
-                    color: product.accent,
-                    fontWeight: 700,
-                    marginBottom: "18px",
-                  }}
-                >
-                  Naturally Sourced Water
-                </span>
                 <h1
                   className="hero-title"
                   style={{
@@ -660,43 +633,6 @@ export default function HeroReveal() {
                     </motion.div>
                   ))}
                 </motion.div>
-            </motion.div>
-          </div>
-
-          {/* ── Right-side tagline — settles in a beat after the bottle does ── */}
-          <div className="hero-tagline" style={{ zIndex: 6 }}>
-            {/* Same reasoning as the caption above: no `exit`, so the old
-                line disappears instantly instead of stacking with the new
-                one while both animate. */}
-            <motion.div
-              key={product.signature}
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: TEXT_DURATION, ease: EASE, delay: TAGLINE_DELAY }}
-            >
-              <p
-                className="hero-tagline-text"
-                style={{
-                  fontFamily: "'Cinzel',serif",
-                  fontStyle: "italic",
-                  fontWeight: 500,
-                  fontSize: "clamp(1.35rem, 2.1vw, 1.9rem)",
-                  lineHeight: 1.4,
-                  color: TEXT_COLOR,
-                  margin: 0,
-                }}
-              >
-                “{product.signature}”
-              </p>
-              <div
-                style={{
-                  marginTop: "16px",
-                  marginLeft: "auto",
-                  width: "36px",
-                  height: "1px",
-                  background: `linear-gradient(to left, ${product.accent}, transparent)`,
-                }}
-              />
             </motion.div>
           </div>
         </div>

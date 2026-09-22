@@ -20,7 +20,7 @@ export default function Footer() {
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={withBasePath("/logo-full.png")} alt="Elegancià, the water of elites" style={{ height: "28px", width: "auto", marginBottom: 14 }} />
-            <p className="footer-blurb" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", lineHeight: 1.75, color: "rgba(26,58,92,0.55)", maxWidth: 220 }}>Naturally sourced, bottled with care at every step.</p>
+            <p className="footer-blurb" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", lineHeight: 1.75, color: "rgba(26,58,92,0.55)", maxWidth: 220 }}>Bottled in Peshawar, Pakistan.</p>
             <div className="footer-socials" style={{ display: "flex", gap: 12, marginTop: 22 }}>
               {["𝕏", "◎", "in"].map((icon) => (
                 <button key={icon} style={{
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           {[
-            { title: "Product", links: ["500ml Bottle", "Small Pack", "Large Pack", "Gift Sets"] },
+            { title: "Product", links: ["500ml Bottle", "500ml Pack", "1500ml Pack", "19L Dispenser"] },
             { title: "Company", links: ["Our Story", "Sustainability", "Lab Reports", "Contact"] },
             { title: "Legal", links: ["License", "Privacy Policy", "Terms of Use", "Refund Policy", "Cookie Policy"] },
           ].map((col) => (

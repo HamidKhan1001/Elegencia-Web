@@ -99,12 +99,10 @@ body {
   100% { transform: translateY(0); opacity: 0.9; }
 }
 
-/* Hero: the bottle sits right-of-center on the stage; the caption and
-   tagline live either side of it so neither ever sits on top of the
-   product. Below ~1080px there isn't room for all three side by side, so
-   the shared wrapper switches to a plain stacked column instead — that way
-   the two text blocks never have to guess each other's height to avoid
-   overlapping the way two independently-guessed absolute positions would. */
+/* Hero: the bottle sits right-of-center on the stage; the caption sits
+   beside it so it's never on top of the product. Below ~1080px there isn't
+   room for both side by side, so the shared wrapper switches to a plain
+   stacked column instead. */
 .hero-caption {
   position: absolute;
   top: 50%;
@@ -112,15 +110,6 @@ body {
   transform: translateY(-50%);
   width: clamp(360px, 36vw, 480px);
   text-align: left;
-}
-
-.hero-tagline {
-  position: absolute;
-  top: 50%;
-  right: clamp(24px, 6vw, 64px);
-  transform: translateY(-50%);
-  width: clamp(220px, 20vw, 300px);
-  text-align: right;
 }
 
 .hero-mobile-brand {
@@ -194,23 +183,16 @@ body {
     text-align: center;
   }
 
-  /* Description and tagline are the least essential copy — dropping them is
-     what actually makes room, rather than shrinking everything a little and
+  /* The description is the least essential copy — dropping it is what
+     actually makes room, rather than shrinking everything a little and
      still overlapping. */
-  .hero-desc,
-  .hero-tagline {
+  .hero-desc {
     display: none;
   }
 
   .hero-title {
     font-size: clamp(1.6rem, 6.5vw, 2.1rem) !important;
     margin-bottom: 10px !important;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.6rem !important;
-    letter-spacing: 0.2em !important;
-    margin-bottom: 12px !important;
   }
 
   .hero-stats-list {
@@ -265,47 +247,13 @@ body {
    actually just centered outside the visible area. These shrink the whole
    block on shorter viewports so it always fits. */
 @media (max-height: 820px) {
-  .hero-eyebrow { margin-bottom: 10px !important; }
   .hero-title { font-size: clamp(1.9rem, 4vw, 2.6rem) !important; margin-bottom: 14px !important; }
   .hero-desc { font-size: 0.92rem !important; line-height: 1.5 !important; margin-bottom: 16px !important; }
   .hero-stats-list { gap: 6px !important; }
-  .hero-tagline-text { font-size: clamp(1.05rem, 1.8vw, 1.35rem) !important; }
 }
 
 @media (max-height: 620px) {
-  .hero-eyebrow { display: none !important; }
   .hero-title { font-size: clamp(1.5rem, 3.4vw, 2rem) !important; margin-bottom: 8px !important; }
   .hero-desc { display: none !important; }
-}
-
-/* Ingredients: on desktop the four mineral callouts sit at the corners of
-   a fixed-height stage, around the bottle. Below the breakpoint there's no
-   room for that radial layout, so it collapses into a plain 2-column grid
-   with the bottle spanning the top — same content, no absolute positioning
-   to fight with on a narrow screen. */
-.ingredients-stage .chip-tl { top: 4%; left: 0; }
-.ingredients-stage .chip-tr { top: 4%; right: 0; }
-.ingredients-stage .chip-bl { bottom: 4%; left: 0; }
-.ingredients-stage .chip-br { bottom: 4%; right: 0; }
-
-@media (max-width: 640px) {
-  .ingredients-stage {
-    height: auto !important;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    align-items: center;
-    justify-items: center;
-    padding-top: 24px;
-  }
-  .ingredients-stage .ingredients-bottle {
-    position: static !important;
-    transform: none !important;
-    grid-column: 1 / -1;
-    height: 240px !important;
-  }
-  .ingredients-stage .ingredients-chip {
-    position: static !important;
-  }
 }
 

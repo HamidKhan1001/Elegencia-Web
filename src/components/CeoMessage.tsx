@@ -30,7 +30,7 @@ export default function CeoMessage() {
 
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px", width: "100%", position: "relative", zIndex: 1 }}>
         <div className="reveal" style={{ marginBottom: 32, textAlign: "center" }}>
-          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.35)", borderRadius: "20px", background: "rgba(74,158,202,0.08)" }}>A Message From Our Founder</span>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.35)", borderRadius: "20px", background: "rgba(74,158,202,0.08)" }}>Founder</span>
         </div>
 
         <div className="ceo-grid" style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 56, alignItems: "center" }}>
@@ -52,11 +52,11 @@ export default function CeoMessage() {
 
           <div className="reveal-right">
             <p style={{
-              fontFamily: "'Playfair Display',serif", fontStyle: "italic",
+              fontFamily: "'Playfair Display',serif",
               fontSize: "clamp(1.05rem,1.9vw,1.5rem)", lineHeight: 1.75,
               color: "#eaf4fb", marginBottom: 28,
             }}>
-              &ldquo;Elegancià was never meant to be just another bottle on a shelf. Every liter we bottle carries a promise, both to the source it comes from and to the person who trusts us enough to drink it. That promise is the only thing we&apos;re really in the business of keeping.&rdquo;
+              Elegancià is led by M. Sufyan Rasheed, and bottled at our facility in Peshawar, Pakistan.
             </p>
             <h3 style={{ fontFamily: "'Cinzel',serif", fontSize: "1.05rem", fontWeight: 700, letterSpacing: "0.04em", color: "#ffffff", marginBottom: 4 }}>
               M. Sufyan Rasheed

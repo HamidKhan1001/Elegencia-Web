@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Elegancià | The Water of Elites",
-  description: "Naturally sourced premium drinking water, bottled with care.",
+  description: "Bottled drinking water from Peshawar, Pakistan. 500ml, 1500ml, and 19L.",
 };
 
 export default function RootLayout({

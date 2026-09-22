@@ -3,10 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const features = [
-  { icon: "♻", title: "100% Recyclable PET", desc: "Uses 40% less plastic than the industry standard, without losing structural integrity.", stat: "40% Less Plastic", color: "#4a9eca" },
-  { icon: "◯", title: "Featherweight Design", desc: "The 500ml bottle weighs just 8.4g, lighter than a standard sheet of paper.", stat: "8.4g Only", color: "#a8d8f0" },
-  { icon: "◈", title: "Eco Sky-Blue Cap", desc: "Made from bio-based polymers that are fully recyclable through standard municipal systems.", stat: "Bio-Based", color: "#7ec8e3" },
-  { icon: "✦", title: "Responsible Shipping", desc: "We offset delivery emissions through verified reforestation programs.", stat: "Offset", color: "#c9a84c" },
+  { icon: "♻", title: "Recyclable Bottle", desc: "Made from PET plastic, recyclable through standard programs.", stat: "PET", color: "#4a9eca" },
+  { icon: "◈", title: "Recyclable Cap", desc: "The cap is recyclable too.", stat: "Recyclable", color: "#7ec8e3" },
 ];
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
@@ -48,9 +46,9 @@ export default function Sustainability() {
 
           {/* Left — heading */}
           <div className="reveal-left">
-            <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 16, display: "inline-block" }}>Sustainability & Craftsmanship</span>
-            <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.6rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.15, color: "#0a1628", marginTop: 14, marginBottom: 18 }}>Luxury Without<br />Compromise</h2>
-            <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.88rem", lineHeight: 1.82, color: "rgba(26,58,92,0.68)", maxWidth: 360, marginBottom: 28 }}>Premium water should also be responsible water. Every bottle is designed to minimize environmental impact without compromising quality.</p>
+            <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 16, display: "inline-block" }}>Packaging</span>
+            <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.6rem,3.2vw,2.8rem)", fontWeight: 700, lineHeight: 1.15, color: "#0a1628", marginTop: 14, marginBottom: 18 }}>Recyclable Packaging</h2>
+            <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.88rem", lineHeight: 1.82, color: "rgba(26,58,92,0.68)", maxWidth: 360, marginBottom: 28 }}>Our bottles are made from PET plastic, which is widely recyclable.</p>
 
             {/* Big stat circle */}
             <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 120, height: 120, borderRadius: "50%", border: "1px solid rgba(74,158,202,0.2)", background: "rgba(74,158,202,0.05)" }}>
