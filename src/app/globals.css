@@ -278,3 +278,34 @@ body {
   .hero-desc { display: none !important; }
 }
 
+/* Ingredients: on desktop the four mineral callouts sit at the corners of
+   a fixed-height stage, around the bottle. Below the breakpoint there's no
+   room for that radial layout, so it collapses into a plain 2-column grid
+   with the bottle spanning the top — same content, no absolute positioning
+   to fight with on a narrow screen. */
+.ingredients-stage .chip-tl { top: 4%; left: 0; }
+.ingredients-stage .chip-tr { top: 4%; right: 0; }
+.ingredients-stage .chip-bl { bottom: 4%; left: 0; }
+.ingredients-stage .chip-br { bottom: 4%; right: 0; }
+
+@media (max-width: 640px) {
+  .ingredients-stage {
+    height: auto !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+    justify-items: center;
+    padding-top: 24px;
+  }
+  .ingredients-stage .ingredients-bottle {
+    position: static !important;
+    transform: none !important;
+    grid-column: 1 / -1;
+    height: 240px !important;
+  }
+  .ingredients-stage .ingredients-chip {
+    position: static !important;
+  }
+}
+

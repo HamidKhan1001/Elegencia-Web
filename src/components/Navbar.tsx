@@ -27,7 +27,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const links = ["Source", "Purity", "Mineral Profile", "Order", "Contact"];
+  // Ordered to match the actual top-to-bottom section order on the page —
+  // it was previously Source/Purity/Mineral Profile, but Mineral Profile
+  // actually sits above Purity (Sustainability) in the page, so the nav was
+  // silently out of sync with what scrolling past it actually shows.
+  const links = ["Ingredients", "Source", "Mineral Profile", "Purity", "Order", "Contact"];
+  // Root-relative (not a bare "#slug") so these still work from pages other
+  // than the homepage, like /license — the browser navigates home first,
+  // then jumps to the anchor, instead of silently doing nothing.
+  const sectionHref = (label: string) => `${withBasePath("/")}#${label.toLowerCase().replace(" ", "-")}`;
 
   return (
     <header style={{
@@ -43,7 +51,7 @@ export default function Navbar() {
     }}>
       <nav style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
-        <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+        <a href={withBasePath("/")} style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           {/* The logo image already carries the wordmark, so there's no
               separate text sibling here anymore. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -54,7 +62,7 @@ export default function Navbar() {
         <ul style={{ gap: "2.2rem", listStyle: "none", alignItems: "center" }} className="hidden md:flex">
           {links.map((link) => (
             <li key={link}>
-              <a href={`#${link.toLowerCase().replace(" ", "-")}`} style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.73rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1a3a5c", textDecoration: "none", fontWeight: 500, transition: "color 0.3s ease" }}
+              <a href={sectionHref(link)} style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.73rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1a3a5c", textDecoration: "none", fontWeight: 500, transition: "color 0.3s ease" }}
                 onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#4a9eca")}
                 onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#1a3a5c")}
               >{link}</a>
@@ -71,7 +79,7 @@ export default function Navbar() {
       {menuOpen && (
         <div style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", padding: "18px 32px 26px", borderTop: "1px solid rgba(74,158,202,0.12)" }}>
           {links.map((link) => (
-            <a key={link} href={`#${link.toLowerCase().replace(" ", "-")}`} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 0", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#1a3a5c", textDecoration: "none", borderBottom: "1px solid rgba(74,158,202,0.08)" }}>{link}</a>
+            <a key={link} href={sectionHref(link)} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 0", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#1a3a5c", textDecoration: "none", borderBottom: "1px solid rgba(74,158,202,0.08)" }}>{link}</a>
           ))}
         </div>
       )}
