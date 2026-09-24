@@ -12,17 +12,10 @@ const CHANNELS = [
   },
   {
     icon: "✉",
-    label: "Sales",
-    value: "sales@elegancia.com.pk",
-    href: "mailto:sales@elegancia.com.pk",
+    label: "Email",
+    value: "eleganciawater@gmail.com",
+    href: "mailto:eleganciawater@gmail.com",
     color: "#3fb3dd",
-  },
-  {
-    icon: "✉",
-    label: "General Inquiries",
-    value: "info@elegancia.com.pk",
-    href: "mailto:info@elegancia.com.pk",
-    color: "#7ec8e3",
   },
   {
     icon: "⌂",
