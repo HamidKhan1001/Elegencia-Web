@@ -6,7 +6,7 @@ import { getCutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
 
 const BOTTLE_SRC = withBasePath("/products/bottle-500ml-front.png");
-const LABEL_SRC = withBasePath("/ingredients-label.jpg");
+const LABEL_SRC = withBasePath("/ingredients-label.png");
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

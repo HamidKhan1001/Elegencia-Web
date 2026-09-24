@@ -4,15 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { getCutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
 
-// There's no real 1500ml bottle photo yet. Reusing either 500ml shot or
-// the 19L jug would show the wrong bottle size as if it were correct, so
-// that one card gets a plain text placeholder (`photoPending`) instead of
-// a photo that quietly misrepresents what you're buying.
+// Three sizes, matching the hero exactly — not a single bottle plus packs.
+// There's no real 1500ml bottle photo yet, so that one gets a plain text
+// placeholder (`photoPending`) instead of a photo that's the wrong size.
 const products = [
-  { name: "500ml Bottle", subtitle: "Single Bottle", tag: "Single", tagColor: "#4a9eca", features: ["500ml", "Sky-blue cap"], qty: "", img: withBasePath("/products/bottle-500ml-front.png") },
-  { name: "500ml Pack", subtitle: "12 × 500ml", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-detail.png") },
-  { name: "1500ml Pack", subtitle: "6 × 1.5L", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: null, photoPending: true },
-  { name: "19L Dispenser", subtitle: "Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l.png") },
+  { name: "500ml", subtitle: "12 × 500ml Pack", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-front.png") },
+  { name: "1500ml", subtitle: "6 × 1.5L Pack", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: null, photoPending: true },
+  { name: "19L", subtitle: "Dispenser · Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l-v2.png") },
 ];
 
 // Deterministic pseudo-random (not Math.random()) — a value from Math.random()
@@ -23,7 +21,7 @@ const snowflakes = Array.from({ length: 12 }, (_, i) => ({ id: i, left: seed(i *
 
 export default function ProductShowcase() {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const [cutouts, setCutouts] = useState<Record<string, string>>({});
 
   useEffect(() => {

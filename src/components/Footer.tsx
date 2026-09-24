@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           {[
-            { title: "Product", links: ["500ml Bottle", "500ml Pack", "1500ml Pack", "19L Dispenser"] },
+            { title: "Product", links: ["500ml", "1500ml", "19L Dispenser"] },
             { title: "Company", links: ["Our Story", "Sustainability", "Lab Reports", "Contact"] },
             { title: "Legal", links: ["License", "Privacy Policy", "Terms of Use", "Refund Policy", "Cookie Policy"] },
           ].map((col) => (

@@ -6,8 +6,8 @@ const CHANNELS = [
   {
     icon: "☎",
     label: "Phone",
-    value: "+92 313 4666686",
-    href: "tel:+923134666686",
+    value: "+92 310 3535597",
+    href: "tel:+923103535597",
     color: "#4a9eca",
   },
   {

@@ -57,7 +57,7 @@ export default function MineralProfile() {
             <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 10, display: "inline-block" }}>Mineral Content</span>
             <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.5rem,2.8vw,2.4rem)", fontWeight: 700, color: "#0a1628", marginTop: 10 }}>What&apos;s in the Water</h2>
           </div>
-          <a href={withBasePath("/ingredients-label.jpg")} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.7rem", letterSpacing: "0.08em", color: "#4a9eca", fontWeight: 600, textDecoration: "none" }}>
+          <a href={withBasePath("/ingredients-label.png")} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.7rem", letterSpacing: "0.08em", color: "#4a9eca", fontWeight: 600, textDecoration: "none" }}>
             View the printed label ↗
           </a>
         </div>
