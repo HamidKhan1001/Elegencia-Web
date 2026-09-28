@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { getCutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
 
-// Three sizes, matching the hero exactly — not a single bottle plus packs.
 // There's still no real 1500ml bottle photo, so this reuses the 500ml
 // detail shot as a stand-in until a real one comes in — an inaccurate
 // bottle shape/size, but that reads better here than an empty card.
 const products = [
   { name: "500ml", subtitle: "12 × 500ml Pack", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-front.png") },
   { name: "1500ml", subtitle: "6 × 1.5L Pack", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: withBasePath("/products/bottle-500ml-detail.png") },
+  { name: "6L", subtitle: "Single Bottle", tag: "6L", tagColor: "#2fa9d6", features: ["6L"], qty: "", img: withBasePath("/products/6l.png") },
   { name: "19L", subtitle: "Dispenser · Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l-v3.png") },
 ];
 
