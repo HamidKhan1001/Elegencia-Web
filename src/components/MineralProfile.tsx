@@ -16,12 +16,6 @@ const minerals = [
   { label: "TDS", range: "130 – 250", unit: "mg/L", color: "#1a7fbf" },
 ];
 
-// Deterministic pseudo-random (not Math.random()) — a value from Math.random()
-// evaluated at module scope differs between the server render and the
-// client's first render, which is a React hydration mismatch on every load.
-const seed = (n: number) => { const x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); };
-const snowflakes = Array.from({ length: 12 }, (_, i) => ({ id: i, left: seed(i * 4) * 100, delay: seed(i * 4 + 1) * 12, duration: 8 + seed(i * 4 + 2) * 8, size: 1.5 + seed(i * 4 + 3) * 2 }));
-
 export default function MineralProfile() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -46,9 +40,6 @@ export default function MineralProfile() {
       }}
     >
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg,transparent,rgba(74,158,202,0.4),transparent)" }} />
-      {snowflakes.map((sf) => (
-        <div key={sf.id} style={{ position: "absolute", left: `${sf.left}%`, top: "-20px", width: `${sf.size}px`, height: `${sf.size}px`, borderRadius: "50%", background: "rgba(74,158,202,0.4)", animation: `snow-drift ${sf.duration}s ${sf.delay}s linear infinite`, pointerEvents: "none" }} />
-      ))}
 
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px", width: "100%", position: "relative", zIndex: 1 }}>
 

@@ -68,29 +68,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const IMAGE_DURATION = 0.9;
 const TEXT_DURATION = 0.5;
 
-interface Snowflake {
-  id: number;
-  left: number;
-  delay: number;
-  duration: number;
-  size: number;
-  opacity: number;
-}
-
-// Hand-picked, not Math.random() at module scope — that would draw a
-// different pattern on the server than on the client and trigger a
-// hydration mismatch. Slow and barely-there on purpose: a handful of tiny,
-// faint flakes drifting down over ~20-30s each, not a blizzard.
-const SNOWFLAKES: Snowflake[] = [
-  { id: 0, left: 8, delay: 0, duration: 26, size: 2, opacity: 0.3 },
-  { id: 1, left: 22, delay: 6, duration: 30, size: 1.5, opacity: 0.22 },
-  { id: 2, left: 37, delay: 12, duration: 24, size: 2.5, opacity: 0.28 },
-  { id: 3, left: 51, delay: 3, duration: 28, size: 1.5, opacity: 0.2 },
-  { id: 4, left: 66, delay: 15, duration: 25, size: 2, opacity: 0.26 },
-  { id: 5, left: 79, delay: 9, duration: 32, size: 1.5, opacity: 0.22 },
-  { id: 6, left: 91, delay: 20, duration: 27, size: 2, opacity: 0.24 },
-];
-
 // One wheel notch or one swipe = one bottle change, in either direction.
 // This must comfortably outlast IMAGE_DURATION so a second step never cuts
 // into a transition still in flight — that overlap is what reads as janky
@@ -344,26 +321,6 @@ export default function HeroReveal() {
             backgroundSize: "140px 140px",
           }}
         />
-
-        {/* Snow — slow, faint, easy to miss; alpine atmosphere, not a blizzard */}
-        {SNOWFLAKES.map((sf) => (
-          <div
-            key={sf.id}
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: `${sf.left}%`,
-              top: "-24px",
-              width: `${sf.size}px`,
-              height: `${sf.size}px`,
-              borderRadius: "50%",
-              background: `rgba(74,158,202,${sf.opacity})`,
-              animation: `snow-drift ${sf.duration}s ${sf.delay}s linear infinite`,
-              pointerEvents: "none",
-              zIndex: 3,
-            }}
-          />
-        ))}
 
         {/* Mobile-only brand mark — the real Navbar stays hidden for the
             whole hero (by design, so it doesn't float over a full-screen

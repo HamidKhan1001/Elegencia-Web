@@ -2,22 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { getCutout } from "./hero/cutoutCache";
+import { getCutout, Cutout } from "./hero/cutoutCache";
 import { withBasePath } from "@/lib/basePath";
+import WaterRippleEffect from "./WaterRippleEffect";
 
 const BOTTLE_SRC = withBasePath("/products/bottle-500ml-front.png");
 const LABEL_SRC = withBasePath("/ingredients-label.png");
+const BOTTLE_DISPLAY_HEIGHT = 340;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Ingredients() {
-  const [bottleUrl, setBottleUrl] = useState<string | null>(null);
+  const [bottle, setBottle] = useState<Cutout | null>(null);
   const [zoomed, setZoomed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     getCutout(BOTTLE_SRC).then((c) => {
-      if (!cancelled) setBottleUrl(c.url);
+      if (!cancelled) setBottle(c);
     }).catch(() => {});
     return () => { cancelled = true; };
   }, []);
@@ -63,9 +65,19 @@ export default function Ingredients() {
               width: 280, height: 280, borderRadius: "50%",
               background: "radial-gradient(circle, rgba(74,158,202,0.16), transparent 70%)",
             }} />
-            {bottleUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={bottleUrl} alt="Elegancià 500ml bottle" style={{ height: 340, width: "auto", objectFit: "contain", filter: "drop-shadow(0 20px 30px rgba(10,22,40,0.2))", position: "relative", zIndex: 1 }} />
+            {bottle && (
+              <div style={{ position: "relative", zIndex: 1, filter: "drop-shadow(0 20px 30px rgba(10,22,40,0.2))" }}>
+                <WaterRippleEffect
+                  imageSrc={bottle.url}
+                  width={Math.round(BOTTLE_DISPLAY_HEIGHT * bottle.aspect)}
+                  height={BOTTLE_DISPLAY_HEIGHT}
+                  waveIntensity={0.004}
+                  rippleIntensity={0.01}
+                  animationSpeed={0.6}
+                  role="img"
+                  aria-label="Elegancià 500ml bottle"
+                />
+              </div>
             )}
           </motion.div>
 

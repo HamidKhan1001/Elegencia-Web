@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import LoadingScreen from "@/components/LoadingScreen";
+import SiteSnowfall from "@/components/SiteSnowfall";
 import HeroReveal from "@/components/HeroReveal";
 import Ingredients from "@/components/Ingredients";
 import BrandStory from "@/components/BrandStory";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main style={{ background: "#f0f8ff" }}>
       <LoadingScreen />
+      <SiteSnowfall />
       <Navbar />
 
       {/* Hero: center-anchored bottle with a smoky/atmospheric reveal between products */}

@@ -26,13 +26,6 @@ body {
 ::-webkit-scrollbar-track { background: #f0f8ff; }
 ::-webkit-scrollbar-thumb { background: #4a9eca; border-radius: 2px; }
 
-@keyframes snow-drift {
-  0%   { transform: translateY(-20px) translateX(0); opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 0.55; }
-  100% { transform: translateY(105vh) translateX(28px); opacity: 0; }
-}
-
 @keyframes loading-sweep {
   0%   { transform: translateX(-140px); }
   100% { transform: translateX(280px); }
