@@ -71,9 +71,10 @@ export default function Ingredients() {
                   imageSrc={bottle.url}
                   width={Math.round(BOTTLE_DISPLAY_HEIGHT * bottle.aspect)}
                   height={BOTTLE_DISPLAY_HEIGHT}
-                  waveIntensity={0.004}
-                  rippleIntensity={0.01}
-                  animationSpeed={0.6}
+                  waveIntensity={0.014}
+                  rippleIntensity={0.03}
+                  animationSpeed={1.1}
+                  hoverRippleMultiplier={5}
                   role="img"
                   aria-label="Elegancià 500ml bottle"
                 />
