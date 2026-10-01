@@ -62,7 +62,7 @@ export default function CeoMessage() {
               M. Sufyan Rasheed
             </h3>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 600 }}>
-              Founder &amp; CEO, <span style={{ fontSize: "0.56rem" }}>Elegancià</span>
+              Founder &amp; CEO, <span style={{ fontSize: "0.56rem", textTransform: "none" }}>elegancià</span>
             </p>
           </div>
         </div>
