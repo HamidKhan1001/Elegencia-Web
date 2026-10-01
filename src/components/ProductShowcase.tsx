@@ -11,7 +11,7 @@ const products = [
   { name: "500ml", subtitle: "12 × 500ml Pack", tag: "12-Pack", tagColor: "#c9a84c", features: ["12 × 500ml bottles"], qty: "×12", featured: true, img: withBasePath("/products/bottle-500ml-front.png") },
   { name: "1500ml", subtitle: "6 × 1.5L Pack", tag: "6-Pack", tagColor: "#7ec8e3", features: ["6 × 1.5L bottles"], qty: "×6", img: withBasePath("/products/bottle-500ml-detail.png") },
   { name: "6L", subtitle: "Single Bottle", tag: "6L", tagColor: "#2fa9d6", features: ["6L"], qty: "", img: withBasePath("/products/6l.png") },
-  { name: "19L", subtitle: "Dispenser · Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l-v5.png") },
+  { name: "19L", subtitle: "Dispenser · Doorstep Delivery", tag: "Dispenser", tagColor: "#1a7fbf", features: ["19L"], qty: "", img: withBasePath("/products/bottle-19l-v6.jpeg") },
 ];
 
 export default function ProductShowcase() {
@@ -44,7 +44,7 @@ export default function ProductShowcase() {
 
   return (
     <div
-      id="order"
+      id="products"
       ref={ref}
       style={{
         minHeight: "100vh", width: "100%",
@@ -59,7 +59,7 @@ export default function ProductShowcase() {
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px", width: "100%", position: "relative", zIndex: 1 }}>
 
         <div className="reveal" style={{ textAlign: "center", marginBottom: 32 }}>
-          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 12, display: "inline-block" }}>Order</span>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.3)", borderRadius: "20px", background: "rgba(74,158,202,0.06)", marginBottom: 12, display: "inline-block" }}>Products</span>
           <h2 style={{ fontFamily: "'Cinzel',serif", fontSize: "clamp(1.5rem,2.8vw,2.4rem)", fontWeight: 700, color: "#0a1628", marginTop: 12 }}>Choose a Size</h2>
         </div>
 

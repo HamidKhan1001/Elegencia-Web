@@ -43,7 +43,7 @@ const PRODUCTS: Product[] = [
     heightVh: 66,
   },
   {
-    src: withBasePath("/products/bottle-19l-v5.png"),
+    src: withBasePath("/products/bottle-19l-v6.jpeg"),
     step: "19L Dispenser",
     titleMain: "Elegancià",
     titleAccent: "19L.",

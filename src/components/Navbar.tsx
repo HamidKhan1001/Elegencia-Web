@@ -31,7 +31,7 @@ export default function Navbar() {
   // it was previously Source/Purity/Mineral Profile, but Mineral Profile
   // actually sits above Purity (Sustainability) in the page, so the nav was
   // silently out of sync with what scrolling past it actually shows.
-  const links = ["Ingredients", "Source", "Mineral Profile", "Purity", "Order", "Contact"];
+  const links = ["Ingredients", "Source", "Mineral Profile", "Purity", "Products", "Contact"];
   // Root-relative (not a bare "#slug") so these still work from pages other
   // than the homepage, like /license — the browser navigates home first,
   // then jumps to the anchor, instead of silently doing nothing.

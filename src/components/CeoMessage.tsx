@@ -30,7 +30,7 @@ export default function CeoMessage() {
 
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px", width: "100%", position: "relative", zIndex: 1 }}>
         <div className="reveal" style={{ marginBottom: 32, textAlign: "center" }}>
-          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.35)", borderRadius: "20px", background: "rgba(74,158,202,0.08)" }}>Founder</span>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "0.6rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#4a9eca", fontWeight: 700, padding: "4px 14px", border: "1px solid rgba(74,158,202,0.35)", borderRadius: "20px", background: "rgba(74,158,202,0.08)" }}>Founder of Elegancià</span>
         </div>
 
         <div className="ceo-grid" style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 56, alignItems: "center" }}>
