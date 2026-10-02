@@ -7,7 +7,7 @@ import { withBasePath } from "@/lib/basePath";
 import WaterRippleEffect from "./WaterRippleEffect";
 
 const BOTTLE_SRC = withBasePath("/products/bottle-500ml-front.png");
-const LABEL_SRC = withBasePath("/ingredients-label.png");
+const LABEL_SRC = withBasePath("/ingredients-label-v2.png");
 const BOTTLE_DISPLAY_HEIGHT = 340;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
