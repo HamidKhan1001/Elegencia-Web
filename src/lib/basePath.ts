@@ -1,10 +1,9 @@
-// next/image and next/link auto-prefix their `src`/`href` with `basePath`
-// (see next.config.ts) — but a handful of places load images through a
-// plain `new Image()` / raw <img> instead (the canvas-based background-
-// removal pipeline needs a real element to draw from, not a Next-managed
-// one), and those need to prefix themselves manually. Empty string locally
-// and on any host serving from the domain root; `/Elegencia-Web` only in
-// the GitHub Pages build.
+// The site now serves from a custom domain's root (see public/CNAME and
+// next.config.ts), so there's no basePath to prefix with — this resolves
+// to an empty string everywhere. Left in place (rather than ripping out
+// every withBasePath() call site) so a future move back under a GitHub
+// Pages project subpath, or any other prefixed host, only needs a change
+// here and in next.config.ts.
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export function withBasePath(path: string): string {
